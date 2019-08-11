@@ -5,7 +5,9 @@
   "description": "",
   "main": "dist/handler.js",
   "scripts": {
-    "start": "sls offline start",
+    "build:watch": "webpack --config webpack.config.js --watch",
+    "start:server": "sls offline start",
+    "start": "run-p build:watch start:server",
     "test": "ava",
     "codegen": "apollo-codegen generate src/gql/*.graphql --target ts --output src/gql/_generated.ts --schema schema.json",
     "prepublish": "tsc -p src/tsconfig.build.json",
