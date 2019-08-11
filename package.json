@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "scripts": {
+    "clean": "rimraf packages/**/lib/ node_modules/reg-*",
+    "postinstall": "rm -rf node_modules/@types/react-dom/node_modules && rm -rf node_modules/@types/jsonwebtoken/node_modules && rm -rf node_modules/@types/request/node_modules",
+    "bootstrap": "lerna bootstrap && lerna run prepublish",
+    "test": "lerna run test",
+    "lint": "tslint packages/*/src/**/*.ts packages/*/test/**/*.ts",
+    "deploy:app": "cd packages/reg-gh-app; npm run deploy",
+    "deploy": "npm run deploy:app",
+    "watch": "run-p watch:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reg-viz/gh-app.git"
+  },
+  "keywords": [],
+  "author": "Quramy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reg-viz/gh-app/issues"
+  },
+  "homepage": "https://github.com/reg-viz/gh-app#readme",
+  "devDependencies": {
+    "@types/node": "8.10.0",
+    "avaron": "^0.2.0",
+    "electron": "^1.8.4",
+    "lerna": "2.11.0",
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "tslint": "^5.4.3",
+    "typescript": "2.8.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
