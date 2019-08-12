@@ -12,3 +12,29 @@ build:
       code: |
         yarn --frozen-lockfile
         yarn bootstrap
+
+deploy:
+  steps:
+    - script:
+      name: set yarn cache
+      code: |
+        export YARN_CACHE=$WERCKER_CACHE_DIR/yarn
+
+    - script:
+      name: install 
+      code: |
+        yarn --frozen-lockfile
+        yarn bootstrap
+
+    - script:
+      name: Login npm
+      code: |
+        echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > ~/.npmrc
+        npm whoami
+
+    - script:
+      name: deploy
+      code: |
+        yarn deploy
+        # yarn publish:npm
+

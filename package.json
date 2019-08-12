@@ -6,7 +6,9 @@
     "bootstrap": "lerna bootstrap && lerna run prepublish",
     "test": "lerna run test",
     "lint": "tslint packages/*/src/**/*.ts packages/*/test/**/*.ts",
-    "watch": "run-p watch:*"
+    "watch": "run-p watch:*",
+    "deploy": "lerna run deploy",
+    "publish:npm": "lerna publish from-package --yes"
   },
   "repository": {
     "type": "git",
