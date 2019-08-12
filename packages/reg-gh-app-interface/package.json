@@ -19,7 +19,7 @@
   "repository": "https://github.com/reg-viz/gh-app.git",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "8.10.0",
+    "@types/node": "12.7.1",
     "typescript": "2.8.1"
   }
 }

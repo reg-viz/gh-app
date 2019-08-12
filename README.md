@@ -58,6 +58,26 @@ $ cd packages/reg-gh-app
 $ yarn start
 ```
 
+#### Test
+
+The following cURL command comments to [this PR](https://github.com/reg-viz/gh-app/pull/2).
+
+```sh
+curl -X POST \
+  http://localhost:3000/api/comment-to-pr \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"installationId": "1454831",
+	"owner": "reg-viz",
+	"repository": "gh-app",
+	"branchName": "pr-comment-test",
+	"failedItemsCount": 0,
+	"newItemsCount": 0,
+	"deletedItemsCount": 0,
+	"passedItemsCount": 1
+}'
+```
+
 ### Run frontend
 
 ```sh
