@@ -45,6 +45,7 @@
     "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "reg-gh-app-interface": "^1.0.1",
     "rxjs": "^5.5.10",
     "semantic-ui-react": "^0.71.2",
     "whatwg-fetch": "^2.0.3"
