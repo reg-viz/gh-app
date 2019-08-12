@@ -5,7 +5,9 @@ jobs:
       - image: quramy/node-nightmare
         environment:
           DISPLAY: ":99"
-          GOOGLE_APPLICATION_CREDENTIALS: "/root/gcloud-service-key.json"
+
+    working_directory: ~/repo
+
     steps:
       - restore_cache:
           keys:
