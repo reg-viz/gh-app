@@ -1,8 +1,9 @@
 (function getToken() {
+  const defaultEndpoint = require("../../reg-gh-app-interface/endpoint.json").endpoint;
+  const appEndpoint = process.env["GH_APP_API_ENDPOINT"] || defaultEndpoint;
   if (location.search[0] !=="?") {
     return;
   }
-  const appEndpoint = process.env["GH_APP_API_ENDPOINT"];
   const pairs = location.search.slice(1).split("&");
   const qmap: { [key: string]: string } = { };
   const redirectUrl = sessionStorage.redirectUrl || "index.html";

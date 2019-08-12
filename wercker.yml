@@ -8,10 +8,9 @@ build:
         export YARN_CACHE=$WERCKER_CACHE_DIR/yarn
 
     - script:
-      name: install 
+      name: hello
       code: |
-        yarn --frozen-lockfile
-        yarn bootstrap
+        echo "It's dummy job"
 
 deploy:
   steps:
