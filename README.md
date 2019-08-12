@@ -4,6 +4,8 @@
 
 GitHub App for reg-suit.
 
+- frontend: https://reg-viz.github.io/gh-app/
+
 ## CONTRIBUTING
 
 ### Setup for local development

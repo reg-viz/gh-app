@@ -33,3 +33,13 @@ jobs:
             xvfbd start
             yarn run test
             xvfbd stop
+
+workflows:
+  version: 2
+  reg_gh_app_pipeline:
+    jobs:
+      - build:
+        filters:
+          ignore:
+            - gh-pages
+
