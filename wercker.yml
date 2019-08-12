@@ -15,6 +15,13 @@ build:
 
 deploy:
   steps:
+    - add-ssh-key:
+      keyname: GH_SSH_KEY
+      host: github.com
+    - add-to-known_hosts:
+      hostname: github.com
+      fingerprint: SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
+
     - script:
       name: set yarn cache
       code: |
@@ -25,6 +32,12 @@ deploy:
       code: |
         yarn --frozen-lockfile
         yarn bootstrap
+
+    - script:
+      name: Setup git user
+      code: |
+        git config --global user.email yosuke.kurami@gmail.com
+        git config --global user.name Quramy
 
     - script:
       name: Login npm
