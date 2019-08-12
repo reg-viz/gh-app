@@ -53,6 +53,11 @@ deploy:
 
 release_patch:
   steps:
+    - script:
+      name: workaround fix detached
+      code: |
+        git checkout $WERCKER_GIT_BRANCH || git checkout -b $WERCKER_GIT_BRANCH
+
     - add-ssh-key:
       keyname: GH_SSH_KEY
       host: github.com
@@ -84,6 +89,11 @@ release_patch:
 
 release_minor:
   steps:
+    - script:
+      name: workaround fix detached
+      code: |
+        git checkout $WERCKER_GIT_BRANCH || git checkout -b $WERCKER_GIT_BRANCH
+
     - add-ssh-key:
       keyname: GH_SSH_KEY
       host: github.com
