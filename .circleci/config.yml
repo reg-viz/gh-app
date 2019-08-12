@@ -39,8 +39,8 @@ workflows:
   reg_gh_app_pipeline:
     jobs:
       - build:
-        filters:
-          branches:
-            ignore:
-              - gh-pages
+          filters:
+            branches:
+              ignore:
+                - gh-pages
 
