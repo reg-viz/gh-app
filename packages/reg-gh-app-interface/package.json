@@ -1,10 +1,11 @@
 {
   "name": "reg-gh-app-interface",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "echo T.B.D.",
+    "test": "echo nothing to do",
+    "deploy": "echo nothing to do",
     "prepublish": "tsc -p src/tsconfig.build.json"
   },
   "keywords": [
@@ -14,7 +15,7 @@
     "name": "Quramy",
     "email": "yosuke.kurami@gmail.com"
   },
-  "repository": "git+https://github.com/reg-viz/reg-suit.git",
+  "repository": "https://github.com/reg-viz/gh-app.git",
   "license": "MIT",
   "devDependencies": {
     "typescript": "2.8.1"

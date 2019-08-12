@@ -14,7 +14,7 @@ $ yarn bootstrap
 ```
 
 ### Get .pem file
-For running [private-key](https://developer.github.com/apps/building-github-apps/authenticating-with-github-apps/) for the App is required.
+You need [private-key](https://developer.github.com/apps/building-github-apps/authenticating-with-github-apps/) for the App.
 
 You have 2 options to get .pem file.
 

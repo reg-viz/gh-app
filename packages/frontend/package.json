@@ -1,8 +1,7 @@
 {
   "private": true,
-  "name": "reg-gh-app-front",
-  "version": "0.7.5",
-  "description": "",
+  "name": "frontend",
+  "version": "1.0.0-alpha.0",
   "main": "lib/index.js",
   "scripts": {
     "build:css:dev": "webpack",
@@ -10,7 +9,8 @@
     "test": "avaron",
     "build": "source ../reg-gh-app/.endpoint; webpack --env=prod",
     "prepublish": "tsc -p src/tsconfig.build.json && npm run build:css:dev",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "deploy": "gh-pages -d public"
   },
   "keywords": [
     "reg"
@@ -19,7 +19,7 @@
     "name": "Quramy",
     "email": "yosuke.kurami@gmail.com"
   },
-  "repository": "git+https://github.com/reg-viz/reg-suit.git",
+  "repository": "https://github.com/reg-viz/gh-app.git",
   "license": "MIT",
   "devDependencies": {
     "@types/lodash": "^4.14.71",
@@ -31,6 +31,7 @@
     "css-modules-require-hook": "^4.0.6",
     "dotenv-webpack": "^1.5.4",
     "extract-text-webpack-plugin": "^3.0.0",
+    "gh-pages": "^2.1.1",
     "light-ts-loader": "^1.1.2",
     "postcss-loader": "^2.0.6",
     "style-loader": "^0.18.2",

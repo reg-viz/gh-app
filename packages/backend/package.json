@@ -1,8 +1,7 @@
 {
   "private": true,
-  "name": "reg-gh-app",
-  "version": "0.7.20",
-  "description": "",
+  "name": "backend",
+  "version": "1.0.0-alpha.0",
   "main": "dist/handler.js",
   "scripts": {
     "build:watch": "webpack --config webpack.config.js --watch",
@@ -20,7 +19,7 @@
     "name": "Quramy",
     "email": "yosuke.kurami@gmail.com"
   },
-  "repository": "git+https://github.com/reg-viz/reg-suit.git",
+  "repository": "https://github.com/reg-viz/gh-app.git",
   "license": "MIT",
   "devDependencies": {
     "@types/jsonwebtoken": "^7.2.1",
