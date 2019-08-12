@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "frontend",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "lib/index.js",
   "scripts": {
     "pretest": "cpx \"src/components/**/*.css\" \"lib/components\"",
