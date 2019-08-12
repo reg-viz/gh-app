@@ -33,14 +33,14 @@
     "reg-gh-app-interface": "^0.5.9",
     "serverless": "^1.16.1",
     "serverless-offline": "^3.14.2",
-    "serverless-webpack": "^2.0.0",
     "typescript": "2.8.1",
     "webpack": "^3.0.0"
   },
   "dependencies": {
     "jsonwebtoken": "^7.4.1",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.1",
+    "serverless-offline": "^5.10.1"
   },
   "ava": {
     "files": "lib/**/*.test.js"
