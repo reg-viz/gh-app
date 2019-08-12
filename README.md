@@ -1,6 +1,8 @@
 # reg-suit GitHub App
+[![CircleCI](https://circleci.com/gh/reg-viz/gh-app.svg?style=svg)](https://circleci.com/gh/reg-viz/gh-app)
+[![wercker status](https://app.wercker.com/status/f2602a9bce4e0c7ae7d13428598c4298/s/master "wercker status")](https://app.wercker.com/project/byKey/f2602a9bce4e0c7ae7d13428598c4298)
 
-https://github.com/apps/reg-suit
+GitHub App for reg-suit.
 
 ## CONTRIBUTING
 
