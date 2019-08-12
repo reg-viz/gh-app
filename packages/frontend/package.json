@@ -4,12 +4,12 @@
   "version": "1.0.1",
   "main": "lib/index.js",
   "scripts": {
-    "build:css:dev": "webpack",
     "pretest": "cpx \"src/components/**/*.css\" \"lib/components\"",
     "test": "avaron",
-    "build": "source ../reg-gh-app/.endpoint; webpack --env=prod",
-    "prepublish": "tsc -p src/tsconfig.build.json && npm run build:css:dev",
+    "build": "source ../backend/.endpoint; webpack --env=prod",
+    "prepublish": "tsc -p src/tsconfig.build.json",
     "start": "webpack-dev-server",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d public"
   },
   "keywords": [
