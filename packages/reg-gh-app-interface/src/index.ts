@@ -5,5 +5,6 @@ export type GhAppServerInfo = {
 };
 
 export function getGhAppInfo(): GhAppServerInfo {
-  return require("../endpoint.json").endpoint as GhAppServerInfo;
+  const { endpoint } = require("../endpoint.json");
+  return { endpoint };
 }
