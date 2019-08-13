@@ -5,7 +5,8 @@ import { consoleBox, input } from "./client-id-modal.css";
 export interface ClientIdModalProps {
   repositoryName: string;
   clientId: string;
-  trigger: any;
+  trigger?: any;
+  open?: boolean;
 }
 
 export class ClientIdModal extends React.Component<ClientIdModalProps> {
@@ -36,7 +37,7 @@ export class ClientIdModal extends React.Component<ClientIdModalProps> {
   }
 
   render() {
-    const { repositoryName, clientId, trigger } = this.props;
+    const { repositoryName, clientId, trigger, open } = this.props;
     const conf = JSON.stringify({
       "plugins": {
         "reg-notify-github-plugin": {
@@ -45,7 +46,7 @@ export class ClientIdModal extends React.Component<ClientIdModalProps> {
       }
     }, null, 2);
     return (
-      <Modal className="client-id-modal" trigger={trigger}>
+      <Modal className="client-id-modal" trigger={trigger} open={open}>
         <Modal.Header>Client ID for "{repositoryName}"</Modal.Header>
         <Modal.Content>
           <Input
