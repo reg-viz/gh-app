@@ -9,8 +9,8 @@ import {
   createCommentBody,
   createCommentParams
 } from "./pr-comment-fns";
-import * as updatePrCommentContextQuery from "./gql/update-pr-comment-context.graphql";
-import * as statusDetailQuery from "./gql/status-detail.graphql";
+import updatePrCommentContextQuery from "./gql/update-pr-comment-context.graphql";
+import statusDetailQuery from "./gql/status-detail.graphql";
 import { PullRequestOpenPayload } from "./webhook-detect";
 import { createStatusDetailQueryVariables } from "./status-fns";
 

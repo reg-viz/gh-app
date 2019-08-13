@@ -21,15 +21,12 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.ts$/, exclude: /node_modules/, loader: "light-ts-loader" },
+      { test: /\.ts$/, exclude: /node_modules/, loader: "ts-loader", options: { transpileOnly: true } },
       { test: /\.pem$/, loader: "raw-loader" },
       { test: /\.graphql$/, loader: "raw-loader" },
     ],
   },
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      tsConfigPath: path.resolve(__dirname, "src/tsconfig.json"),
-    }),
     new Dotenv({
       path: "../../.env",
     }),

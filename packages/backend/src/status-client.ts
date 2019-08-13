@@ -1,8 +1,8 @@
 import { auth } from "./auth";
 import { GhApiClient } from "./gh-api-client";
 import { UpdateStatusContextQuery, UpdateStatusContextQueryVariables, StatusDetailQuery } from "./gql/_generated";
-import * as updateStatusContextQuery from "./gql/update-status-context.graphql";
-import * as statusDetailQuery from "./gql/status-detail.graphql";
+import updateStatusContextQuery from "./gql/update-status-context.graphql";
+import statusDetailQuery from "./gql/status-detail.graphql";
 import { PullRequestReviewPayload } from "./webhook-detect";
 import {
   UpdateStatusEventBody,

@@ -4,12 +4,13 @@
   "version": "1.0.5",
   "main": "dist/handler.js",
   "scripts": {
-    "build:watch": "webpack --config webpack.config.js --watch",
+    "build:watch": "webpack --mode=development --watch",
+    "build:prod": "webpack --mode=production --config webpack.config.prod.js",
     "start:server": "sls offline start",
     "start": "run-p build:watch start:server",
     "test": "ava",
     "codegen": "apollo-codegen generate src/gql/*.graphql --target ts --output src/gql/_generated.ts --schema schema.json",
-    "prepublish": "tsc -p src/tsconfig.build.json",
+    "prepublish": "tsc -p tsconfig.build.json",
     "deploy": "/bin/bash ./deploy.sh"
   },
   "keywords": [
@@ -29,19 +30,19 @@
     "ava": "^0.20.0",
     "dotenv-webpack": "^1.5.4",
     "graphql-tag": "^2.4.2",
-    "light-ts-loader": "^1.1.2",
-    "raw-loader": "^0.5.1",
+    "raw-loader": "^3.1.0",
     "reg-gh-app-interface": "^0.5.9",
     "serverless": "^1.16.1",
-    "serverless-offline": "^3.14.2",
+    "serverless-offline": "^5.10.1",
+    "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
-    "webpack": "^3.0.0"
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
   },
   "dependencies": {
     "jsonwebtoken": "^7.4.1",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1",
-    "serverless-offline": "^5.10.1"
+    "request-promise": "^4.2.1"
   },
   "ava": {
     "files": "lib/**/*.test.js"
