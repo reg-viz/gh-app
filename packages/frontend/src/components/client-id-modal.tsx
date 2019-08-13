@@ -5,38 +5,33 @@ import { consoleBox, input } from "./client-id-modal.css";
 export interface ClientIdModalProps {
   repositoryName: string;
   clientId: string;
-  trigger: any;
+  trigger?: any;
+  open?: boolean;
 }
 
 export class ClientIdModal extends React.Component<ClientIdModalProps> {
 
-  inputRef: HTMLInputElement | null = null;
+  inputRef: React.RefObject<Input>;
 
   constructor(props: ClientIdModalProps) {
     super(props);
-    this.handleRef = this.handleRef.bind(this);
+    this.inputRef = React.createRef();
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
-  handleRef(input: any) {
-    if (!input) {
-      this.inputRef = null;
-      return;
-    }
-    this.inputRef = input.inputRef;
-  }
-
   handleOnClick() {
-    if (!this.inputRef) return;
-    this.inputRef.focus();
-    this.inputRef.selectionStart = 0;
-    this.inputRef.selectionEnd = this.props.clientId.length;
+    if (!this.inputRef.current) return;
+    const rawInput = (this.inputRef.current as any).inputRef as React.RefObject<HTMLInputElement>;
+    if (!rawInput.current) return;
+    rawInput.current.focus();
+    rawInput.current.selectionStart = 0;
+    rawInput.current.selectionEnd = this.props.clientId.length;
     document.execCommand("copy");
-    this.inputRef.blur();
+    rawInput.current.blur();
   }
 
   render() {
-    const { repositoryName, clientId, trigger } = this.props;
+    const { repositoryName, clientId, trigger, open } = this.props;
     const conf = JSON.stringify({
       "plugins": {
         "reg-notify-github-plugin": {
@@ -45,12 +40,12 @@ export class ClientIdModal extends React.Component<ClientIdModalProps> {
       }
     }, null, 2);
     return (
-      <Modal className="client-id-modal" trigger={trigger}>
+      <Modal className="client-id-modal" trigger={trigger} open={open}>
         <Modal.Header>Client ID for "{repositoryName}"</Modal.Header>
         <Modal.Content>
           <Input
             className={input}
-            ref={this.handleRef}
+            ref={this.inputRef}
             fluid={true}
             value={clientId}
             action={{ color: "teal", labelPosition: "right", icon: "copy", content: "Copy to clipboard", onClick: this.handleOnClick }}

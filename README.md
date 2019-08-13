@@ -54,11 +54,11 @@ And edit `.env` file.
 ### Run service
 
 ```sh
-$ cd packages/reg-gh-app
+$ cd packages/backend
 $ yarn start
 ```
 
-#### Test
+#### Test API execution
 
 The following cURL command comments to [this PR](https://github.com/reg-viz/gh-app/pull/2).
 
@@ -81,12 +81,19 @@ curl -X POST \
 ### Run frontend
 
 ```sh
-$ cd packages/reg-gh-app-front
+$ cd packages/frontend
 $ yarn start
 ```
 
 ```sh
 $ open http://localshot:4000
+```
+
+### Run Storybook
+
+```sh
+$ cd packages/frontend
+$ yarn storybook
 ```
 
 ## LICENSE

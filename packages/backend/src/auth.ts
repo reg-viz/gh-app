@@ -1,6 +1,6 @@
 import * as jwt from "jsonwebtoken";
-import * as rp from "request-promise";
-import * as zlib from "zlib";
+import rp from "request-promise";
+import zlib from "zlib";
 
 import { convertError } from "./error";
 

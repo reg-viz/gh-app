@@ -2,9 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: quramy/node-nightmare
-        environment:
-          DISPLAY: ":99"
+      - image: regviz/node-xcb
 
     working_directory: ~/repo
 
@@ -27,12 +25,24 @@ jobs:
       - run: yarn run bootstrap
       - run: yarn run lint
 
+      - run: yarn run test
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "regression/yarn.lock" }}
+            - v1-dependencies-
+
       - run:
-          name: Test
+          name: regression
+          working_directory: regression
           command: |
-            xvfbd start
-            yarn run test
-            xvfbd stop
+            yarn --pure-lockfile
+            yarn reg
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "regression/yarn.lock" }}
 
 workflows:
   version: 2

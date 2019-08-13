@@ -22,8 +22,6 @@
   },
   "homepage": "https://github.com/reg-viz/gh-app#readme",
   "devDependencies": {
-    "avaron": "^0.2.0",
-    "electron": "^1.8.4",
     "lerna": "^3.16.4",
     "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.1",

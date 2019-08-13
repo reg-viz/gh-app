@@ -1,9 +1,8 @@
 import { User, Repository, InstallationWithRepos, Installation, RepositoryWithInstallation } from "../../types";
-import { readAvatar } from "./read-avatar";
 
 export const baseUser: User = {
   id: 10,
-  avatarUrl: readAvatar("quramy"),
+  avatarUrl: "/avatar/quramy.png", // readAvatar("quramy"),
   login: "Quramy",
 };
 

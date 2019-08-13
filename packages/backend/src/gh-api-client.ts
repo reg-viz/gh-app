@@ -1,6 +1,6 @@
-import * as fs from "fs";
-import * as path from "path";
-import * as rp from "request-promise";
+import fs from "fs";
+import path from "path";
+import rp from "request-promise";
 import { convertError } from "./error";
 
 const BASIC_HEADERS = {
