@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "backend",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "dist/handler.js",
   "scripts": {
     "build:watch": "webpack --mode=development --watch",
