@@ -2,6 +2,6 @@ node_modules/
 lib/
 public/*.js
 public/*.js.map
-public/style.css
-public/style.css.map
+public/main.css
+public/main.css.map
 screenshot/
