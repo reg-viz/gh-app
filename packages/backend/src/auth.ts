@@ -47,7 +47,7 @@ export function auth(installationId: string) {
   }).catch(convertError);
 }
 
-export function authWidhCode({ code }: { code: string }) {
+export function authWithCode({ code }: { code: string }) {
   const options = {
     url: "https://github.com/login/oauth/access_token",
     method: "POST",
