@@ -1,21 +1,20 @@
 const path = require("path");
 const webpack = require("webpack");
 const Dotenv = require("dotenv-webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 const basePlugins = [
-  new webpack.LoaderOptionsPlugin({
-    tsConfigPath: path.resolve(__dirname, "src/tsconfig.build.json"),
-  }),
-  new ExtractTextPlugin({
-    filename: "style.css",
-    allChunks: true,
+  new MiniCssExtractPlugin({
+    filename: "[name].css",
+    chunkFilename: "[id].css",
+    ignoreOrder: false
   }),
 ];
 
 module.exports = function(env) {
   let plugins;
+  let minimizer;
   if (env && env === "prod") {
     plugins = [
       ...basePlugins,
@@ -23,7 +22,9 @@ module.exports = function(env) {
         path: path.resolve(__dirname, "../../.env.prod"),
         systemvars: true,
       }),
-      new UglifyJSPlugin(),
+    ];
+    minimizer = [
+      new TerserPlugin(),
     ];
   } else {
     plugins = [
@@ -33,6 +34,7 @@ module.exports = function(env) {
         systemvars: false,
       }),
     ];
+    minimizer = [];
   }
   return {
     entry: {
@@ -48,23 +50,28 @@ module.exports = function(env) {
     },
     module: {
       rules: [
-        { test: /\.tsx?$/, exclude: /node_modules/, loader: "light-ts-loader" },
+        { test: /\.tsx?$/, exclude: /node_modules/, loader: "ts-loader", options: { transpileOnly: true } },
         {
           test: /\.css$/,
-          use: ExtractTextPlugin.extract([
+          use: [
+            { loader: MiniCssExtractPlugin.loader },
             {
               loader: "css-loader",
               options: {
-                modules:true, 
-                localIdentName: env !== "prod" ? "[name]_[local]" : "[hash:base64]"
+                modules: {
+                  localIdentName: env !== "prod" ? "[name]_[local]" : "[hash:base64]",
+                },
               },
             },
-            "postcss-loader"
-          ]),
+            { loader: "postcss-loader" },
+          ]
         },
       ],
     },
     plugins,
+    optimization: {
+      minimizer,
+    },
     devServer: {
       port: 4000,
       contentBase: path.join(__dirname, "public"),
