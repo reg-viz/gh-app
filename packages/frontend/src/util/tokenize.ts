@@ -9,7 +9,7 @@ export interface TokenizeParams {
 
 export function tokenize({ repositoryId, installationId, ownerName, repositoryName }: TokenizeParams) {
   const token = `${repositoryId}/${repositoryName}/${installationId}/${ownerName}`;
-  const x = zlib.deflateRawSync(token);
+  const x = (zlib.deflateRawSync(token) as unknown) as number[];
   const clientId = btoa(String.fromCharCode.apply(null, x));
   return clientId;
 }

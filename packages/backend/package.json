@@ -34,7 +34,7 @@
     "reg-gh-app-interface": "^0.5.9",
     "serverless": "^1.16.1",
     "serverless-offline": "^3.14.2",
-    "typescript": "2.8.1",
+    "typescript": "^3.5.3",
     "webpack": "^3.0.0"
   },
   "dependencies": {
