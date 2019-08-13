@@ -34,7 +34,6 @@
     "gh-pages": "^2.1.1",
     "mini-css-extract-plugin": "^0.8.0",
     "postcss-loader": "^3.0.0",
-    "style-loader": "^0.18.2",
     "terser-webpack-plugin": "^1.4.1",
     "ts-loader": "^6.0.4",
     "typed-css-modules": "^0.3.0",
