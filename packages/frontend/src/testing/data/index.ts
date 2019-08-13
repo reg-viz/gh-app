@@ -1,5 +1,4 @@
 import { User, Repository, InstallationWithRepos, Installation, RepositoryWithInstallation } from "../../types";
-// import { readAvatar } from "./read-avatar";
 
 export const baseUser: User = {
   id: 10,

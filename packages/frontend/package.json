@@ -24,6 +24,7 @@
   "repository": "https://github.com/reg-viz/gh-app.git",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.5.5",
     "@storybook/addon-actions": "^5.1.11",
     "@storybook/addon-storysource": "^5.1.11",
     "@storybook/addon-viewport": "^5.1.11",
@@ -60,17 +61,5 @@
     "rxjs": "^5.5.10",
     "semantic-ui-react": "^0.87.3",
     "whatwg-fetch": "^2.0.3"
-  },
-  "avaron": {
-    "files": "lib/components/**/*.test.js",
-    "renderer": true,
-    "fixture": "fixture.html",
-    "windowOptions": {
-      "width": 1200,
-      "height": 900
-    },
-    "require": [
-      "css-modules-require-hook/preset"
-    ]
   }
 }
