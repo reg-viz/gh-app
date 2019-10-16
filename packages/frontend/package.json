@@ -5,14 +5,14 @@
   "main": "lib/index.js",
   "scripts": {
     "pretest": "cpx \"src/components/**/*.css\" \"lib/components\"",
-    "test": "npm run zisui",
+    "test": "npm run storycap",
     "build": "webpack --mode=production --env=prod",
     "prepublish": "tsc -p tsconfig.build.json",
     "start": "webpack-dev-server --mode=development",
     "storybook": "start-storybook -s public,test -p 9001",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d public",
-    "zisui": "zisui -V 1024x800 -o \"../../regression/__screenshots__\" --serverCmd \"npm run storybook\" http://localhost:9001"
+    "storycap": "storycap -V 1024x800 -o \"../../regression/__screenshots__\" --serverCmd \"npm run storybook -- --ci\" http://localhost:9001"
   },
   "keywords": [
     "reg"
@@ -44,6 +44,7 @@
     "gh-pages": "^2.1.1",
     "mini-css-extract-plugin": "^0.8.0",
     "postcss-loader": "^3.0.0",
+    "storycap": "^2.0.0",
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^1.4.1",
     "ts-loader": "^6.0.4",
@@ -51,8 +52,7 @@
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0",
-    "zisui": "^1.3.4"
+    "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
     "lodash": "^4.17.4",
