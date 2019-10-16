@@ -7,6 +7,8 @@
     "test": "lerna run test",
     "lint": "tslint packages/*/src/**/*.ts packages/*/test/**/*.ts",
     "watch": "run-p watch:*",
+    "watch:backend": "cd packages/backend && npm start",
+    "watch:frontend": "cd packages/frontend && npm start",
     "deploy": "lerna run deploy",
     "publish:npm": "lerna publish from-package --yes"
   },

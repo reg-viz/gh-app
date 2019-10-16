@@ -44,6 +44,7 @@
     "gh-pages": "^2.1.1",
     "mini-css-extract-plugin": "^0.8.0",
     "postcss-loader": "^3.0.0",
+    "storycap": "^2.0.0",
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^1.4.1",
     "ts-loader": "^6.0.4",
@@ -51,8 +52,7 @@
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0",
-    "storycap": "^2.0.0"
+    "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
     "lodash": "^4.17.4",
