@@ -9,7 +9,7 @@
     "build:prod": "webpack --mode=production --config webpack.config.prod.js",
     "start:server": "sls offline start",
     "start": "run-p build:watch start:server",
-    "test": "ava",
+    "test": "jest",
     "codegen": "apollo-codegen generate src/gql/*.graphql --target ts --output src/gql/_generated.ts --schema schema.json",
     "prepublish": "tsc -p tsconfig.build.json",
     "deploy:stg": "yarn build:stg && sls deploy --stage stg",
@@ -26,17 +26,19 @@
   "repository": "https://github.com/reg-viz/gh-app.git",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^24.0.19",
     "@types/jsonwebtoken": "^7.2.1",
     "@types/node": "^12.7.1",
     "@types/request-promise": "^4.1.35",
     "apollo-codegen": "^0.13.2",
-    "ava": "^0.20.0",
     "dotenv-webpack": "^1.5.4",
     "graphql-tag": "^2.4.2",
+    "jest": "^24.9.0",
     "raw-loader": "^3.1.0",
     "reg-gh-app-interface": "^0.5.9",
     "serverless": "^1.16.1",
     "serverless-offline": "^5.10.1",
+    "ts-jest": "^24.1.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",
@@ -47,7 +49,30 @@
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
   },
-  "ava": {
-    "files": "lib/**/*.test.js"
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.build.json"
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testMatch": [
+      "**/__tests__/*.(ts|tsx)",
+      "**/*.test.(ts|tsx)"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "_old/.*",
+      "examples/.*",
+      "\\.d\\.ts$",
+      "lib/.*"
+    ]
   }
 }

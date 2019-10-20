@@ -85,9 +85,9 @@ export function createSuccessStatusParams(detail: StatusDetailQuery, payload: Pu
 }
 
 export function encodeMetadata(metadata: ResultMetadata) {
-  return zlib.deflateRawSync(new Buffer(JSON.stringify(metadata))).toString("base64");
+  return zlib.deflateRawSync(Buffer.from(JSON.stringify(metadata))).toString("base64");
 }
 
 export function decodeMetadata(token: string): ResultMetadata {
-  return JSON.parse(zlib.inflateRawSync(new Buffer(token, "base64")).toString());
+  return JSON.parse(zlib.inflateRawSync(Buffer.from(token, "base64")).toString());
 }
