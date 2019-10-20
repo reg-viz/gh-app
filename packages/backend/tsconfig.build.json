@@ -4,6 +4,6 @@
     "declaration": false,
     "rootDir": "./src",
     "outDir": "./lib",
-    "typeRoots": ["./node_modules/@types", "./src/typeDef"]
+    "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/typeDef"]
   }
 }

@@ -1,4 +1,3 @@
-import test from "ava";
 import { convert, CommentToPrEventBody } from "./pr-comment-fns";
 
 const eventBody: CommentToPrEventBody = {
@@ -13,16 +12,18 @@ const eventBody: CommentToPrEventBody = {
   reportUrl: "https://hoge.com/index.html",
 };
 
-test("convert from data01", t => {
-  const log = require("../test/gql-log/update-pr-comment-context/data01.json");
-  const actual = convert(log.data, eventBody);
-  if (!Array.isArray(actual)) return t.fail();
-  t.is(actual[0].method, "POST");
-});
+describe(convert, () => {
+  it("should convert from data01", () => {
+    const log = require("../test/gql-log/update-pr-comment-context/data01.json");
+    const actual = convert(log.data, eventBody);
+    if (!Array.isArray(actual)) return fail();
+    expect(actual[0].method).toBe("POST");
+  });
 
-test("convert from data02", t => {
-  const log = require("../test/gql-log/update-pr-comment-context/data02.json");
-  const actual = convert(log.data, eventBody);
-  if (!Array.isArray(actual)) return t.fail();
-  t.is(actual[0].method, "PATCH");
+  it("should convert from data02", () => {
+    const log = require("../test/gql-log/update-pr-comment-context/data02.json");
+    const actual = convert(log.data, eventBody);
+    if (!Array.isArray(actual)) return fail();
+    expect(actual[0].method).toBe("PATCH");
+  });
 });
