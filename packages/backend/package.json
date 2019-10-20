@@ -5,13 +5,16 @@
   "main": "dist/handler.js",
   "scripts": {
     "build:watch": "webpack --mode=development --watch",
+    "build:stg": "webpack --mode=production --config webpack.config.js",
     "build:prod": "webpack --mode=production --config webpack.config.prod.js",
     "start:server": "sls offline start",
     "start": "run-p build:watch start:server",
     "test": "ava",
     "codegen": "apollo-codegen generate src/gql/*.graphql --target ts --output src/gql/_generated.ts --schema schema.json",
     "prepublish": "tsc -p tsconfig.build.json",
-    "deploy": "/bin/bash ./deploy.sh"
+    "deploy:stg": "yarn build:stg && sls deploy --stage stg",
+    "deploy:prod": "/bin/bash ./deploy.sh",
+    "deploy": "yarn deploy:prod"
   },
   "keywords": [
     "reg"
