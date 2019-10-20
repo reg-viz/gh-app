@@ -13,11 +13,14 @@ import updatePrCommentContextQuery from "./gql/update-pr-comment-context.graphql
 import statusDetailQuery from "./gql/status-detail.graphql";
 import { PullRequestOpenPayload } from "./webhook-detect";
 import { createStatusDetailQueryVariables } from "./status-fns";
+import { logEvent } from "./event-logger";
 
 export async function commentToPR(eventBody: CommentToPrEventBody) {
   validateEventBody(eventBody);
   const token = await auth(eventBody.installationId);
   const client = new GhApiClient(token);
+  const totalItems = eventBody.passedItemsCount + eventBody.failedItemsCount + eventBody.deletedItemsCount + eventBody.newItemsCount;
+  logEvent("COMMENT_TO_PR", { totalItems, body: eventBody });
   const variables: UpdatePrCommentContextQueryVariables = {
     owner: eventBody.owner,
     repository: eventBody.repository,
