@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Input } from "semantic-ui-react";
-import { actionCreator } from "../../action-creator";
-import { help } from "./search-form.css";
+import { dispatcher } from "../../action-creator";
+// import * as styles from "./search-form.css";
 
 export interface SearchFormProps {
   searchText: string;
@@ -15,7 +15,7 @@ export class SearchForm extends React.Component<SearchFormProps>{
   }
 
   handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
-    actionCreator.changeSearchText(e.target.value);
+    dispatcher.changeSearchText(e.target.value);
   }
 
   render() {
@@ -29,14 +29,6 @@ export class SearchForm extends React.Component<SearchFormProps>{
           fluid={true}
           value={this.props.searchText}
         />
-        <p className={help}>
-          Can't find your repository?&nbsp;
-          <a
-            className="text-link"
-            target="_blank"
-            href="https://github.com/apps/reg-suit/installations/new"
-          >Configure your Installation.</a>
-        </p>
       </div>
     );
   }

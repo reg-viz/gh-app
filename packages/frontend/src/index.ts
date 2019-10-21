@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { createElement } from "react";
 import { AppContainer } from "./components/app";
 import { store } from "./store";
-import { actionCreator } from "./action-creator";
+import { dispatcher } from "./action-creator";
 import { registerSideEffects } from "./side-effects";
 import { login } from "./login";
 
@@ -15,7 +15,7 @@ function checkToken() {
 if (!checkToken()) {
   login();
 } else {
-  store.setActions$(registerSideEffects(actionCreator.actions$));
+  store.setActions$(registerSideEffects(dispatcher.actions$));
   document.addEventListener("DOMContentLoaded", () => {
     render(createElement(AppContainer), document.getElementById("app"));
   });

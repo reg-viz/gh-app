@@ -1,0 +1,29 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header > nav {
+  flex: auto;
+}
+
+.brandLogo {
+  display: block;
+  width: 120px;
+  height: 24.55px;
+  background-image: url('/assets/branding_logo.svg');
+}
+
+.header > a {
+  margin-left: 16px;
+}
+@media screen and (min-width: 480px) {
+  .header > a {
+    margin-left: 24px;
+  }
+}
+
+.header > a > i {
+  width: 24px;
+}

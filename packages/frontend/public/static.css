@@ -1,3 +1,14 @@
+:root {
+  /* colors */
+  --color-text-base: #00303C;
+  --color-text-sub: #8DA3A9;
+  --color-priary: #FF4438;
+  --color-gray100: #F8F9F9;
+
+  /* gutter */
+  --gutter-base: 8px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -18,15 +29,16 @@ a.text-link:hover, a.text-link:active {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 300;
+  font-weight: normal;
+  font-family: 'Work Sans', sans-serif;
 }
 
 body {
-  background-color: #fff;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  letter-spacing: .08em;
-  color: #4A4A4A;
+  background-color: var(--color-gray100);
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  color: var(--color-text-base);
+  line-height: 1.75;
 }
 
 button:focus {
