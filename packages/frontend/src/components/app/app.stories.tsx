@@ -31,5 +31,16 @@ storiesOf("app", module)
     repositories={createRepositoies(3)}
     searchText="reg-su"
   />
-))
+), {
+  screenshot: {
+    viewports: {
+      desktop: {
+        width: 1024,
+        height: 768,
+      },
+      tablet: "iPad Mini",
+      mobile: "iPhone X",
+    },
+  },
+})
 ;

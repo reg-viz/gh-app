@@ -13,7 +13,7 @@
     "storybook": "start-storybook -s public,test -p 9001",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d public",
-    "storycap": "storycap -V 1024x800 -o \"../../regression/__screenshots__\" --serverCmd \"npm run storybook -- --ci\" http://localhost:9001"
+    "storycap": "storycap -o \"../../regression/__screenshots__\" --serverCmd \"npm run storybook -- --ci\" http://localhost:9001"
   },
   "keywords": [
     "reg"
@@ -30,6 +30,7 @@
     "@storybook/addon-storysource": "^5.1.11",
     "@storybook/addon-viewport": "^5.1.11",
     "@storybook/react": "^5.1.11",
+    "@types/classnames": "^2.2.9",
     "@types/lodash": "^4.14.71",
     "@types/node": "^12.7.1",
     "@types/react": "^16.0.41",
@@ -56,6 +57,7 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "lodash": "^4.17.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
