@@ -8,6 +8,7 @@
     "test": "npm run storycap",
     "build": "webpack --mode=production --env=prod",
     "prepublish": "tsc -p tsconfig.build.json",
+    "tcm": "tcm src",
     "start": "webpack-dev-server --mode=development",
     "storybook": "start-storybook -s public,test -p 9001",
     "predeploy": "npm run build",

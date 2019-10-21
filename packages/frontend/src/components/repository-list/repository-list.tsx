@@ -1,6 +1,6 @@
 import * as React from "react";
-import { RepositoryWithInstallation } from "../types";
-import { RepositoryItem } from "./repository-item";
+import { RepositoryWithInstallation } from "../../types";
+import { RepositoryItem } from "../repository-item";
 import { header, owner, repoName } from "./repository-list.css";
 
 export interface RepositoryListProps {

@@ -5,7 +5,7 @@ import { AppComponent } from "./app";
 import {
   baseInstallationWithRepos,
   createRepositoies,
-} from "../testing/data";
+} from "../../testing/data";
 
 storiesOf("app", module)
 .add("loading", () => (

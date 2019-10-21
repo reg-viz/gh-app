@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Button } from "semantic-ui-react";
-import { RepositoryWithInstallation } from "../types";
-import { ClientIdModal } from "./client-id-modal";
-import { RoundButton } from "./round-button";
+import { RepositoryWithInstallation } from "../../types";
+import { ClientIdModal } from "../client-id-modal";
+import { RoundButton } from "../round-button/round-button";
 import { avatar, root, main, loginName } from "./repository-item.css";
 
 export interface RepositoryItemProps {

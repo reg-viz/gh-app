@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Icon } from "semantic-ui-react";
-import { actionCreator } from "../action-creator";
+import { actionCreator } from "../../action-creator";
 import { root, logoutLink } from "./logout.css";
 
 export interface LogoutProps { }
