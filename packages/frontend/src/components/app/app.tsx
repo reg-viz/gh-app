@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Message, Segment, Dimmer, Loader } from "semantic-ui-react";
-import { SearchForm } from "./search-form";
-import { store } from "../store";
-import { AppState } from "../types";
-import { heading2 } from "./app.css";
-import { RepositoryList } from "./repository-list";
-import { GotoInstall } from "./goto-install";
-import { Logout } from "./logout";
+import { SearchForm } from "../search-form";
+import { store } from "../../store";
+import { AppState } from "../../types";
+import * as styles from "./app.css";
+import { RepositoryList } from "../repository-list";
+import { GotoInstall } from "../goto-install";
+import { Logout } from "../logout";
 
 export type AppProps = AppState;
 
@@ -15,7 +15,7 @@ function renderContents({ isLoading, installations, searchText, repositories }: 
   if (installations.length) {
     return (
       <div>
-        <h2 className={heading2}>Repositories integrated with reg-suit GitHub app</h2>
+        <h2 className={styles.heading2}>Repositories integrated with reg-suit GitHub app</h2>
         <SearchForm searchText={searchText} style={{ marginTop: 30 }} />
         <RepositoryList className="repo-list" repositories={repositories} style={{ marginTop: 30 }} />
       </div>
@@ -30,13 +30,25 @@ function renderContents({ isLoading, installations, searchText, repositories }: 
 export function AppComponent(props: AppProps) {
   const { isLoading } = props;
     return (
-      <div>
-        <Dimmer active={isLoading}>
-          <Loader />
-        </Dimmer>
-        {renderContents(props)}
-        <Logout />
-      </div>
+      <>
+        <header className={styles.header}>
+          <div className={styles.headerInner}>
+            <img src="assets/logo.png" alt="reg-suit" />
+          </div>
+        </header>
+        <div className={styles.wrapper}>
+          <Dimmer active={isLoading}>
+            <Loader />
+          </Dimmer>
+          {renderContents(props)}
+          <Logout />
+        </div>
+        <footer className={styles.footer}>
+          <div className={styles.footerInner}>
+            <p className={styles.footerBody}>&copy; 2017 reg-viz</p>
+          </div>
+        </footer>
+      </>
     );
 }
 

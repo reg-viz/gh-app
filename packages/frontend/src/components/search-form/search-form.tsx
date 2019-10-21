@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Input } from "semantic-ui-react";
-import { actionCreator } from "../action-creator";
+import { actionCreator } from "../../action-creator";
 import { help } from "./search-form.css";
 
 export interface SearchFormProps {
