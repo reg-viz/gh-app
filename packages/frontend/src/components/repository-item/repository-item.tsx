@@ -2,7 +2,6 @@ import * as React from "react";
 import cx from "classnames";
 import { RepositoryWithInstallation } from "../../types";
 import { ClientIdModal } from "../client-id-modal";
-import { RoundButton } from "../round-button/round-button";
 import * as styles from "./repository-item.css";
 
 type Props = {
