@@ -1,0 +1,30 @@
+.searchForm {
+  width: 100%;
+  height: 56px;
+  position: relative;
+}
+
+.input {
+  border-radius: 3px;
+  padding-left: 48px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: var(--color-text-base);
+  transition: var(--transition-base);
+}
+
+.input::placeholder {
+  color: var(--color-text-sub);
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.icon {
+  position: absolute;
+  top: 21px;
+  left: 16px;
+}

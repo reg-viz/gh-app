@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import * as styles from "./app.css";
 
 import { AppComponent } from "./app";
 import {
@@ -8,23 +9,7 @@ import {
 } from "../../testing/data";
 
 storiesOf("app", module)
-.add("loading", () => (
-  <AppComponent
-    isLoading
-    installations={[]}
-    repositories={[]}
-    searchText=""
-  />
-))
-.add("without installations", () => (
-  <AppComponent
-    isLoading={false}
-    installations={[]}
-    repositories={[]}
-    searchText=""
-  />
-))
-.add("with installations", () => (
+.add("default", () => (
   <AppComponent
     isLoading={false}
     installations={[baseInstallationWithRepos]}
@@ -41,6 +26,30 @@ storiesOf("app", module)
       tablet: "iPad Mini",
       mobile: "iPhone X",
     },
+    variants: {
+      configureFocus: {
+        focus: `.${styles.guide} > a`,
+      },
+      configureHover: {
+        hover: `.${styles.guide} > a`,
+      },
+    },
   },
 })
+.add("loading", () => (
+  <AppComponent
+    isLoading
+    installations={[]}
+    repositories={[]}
+    searchText=""
+  />
+))
+.add("no installations", () => (
+  <AppComponent
+    isLoading={false}
+    installations={[]}
+    repositories={[]}
+    searchText=""
+  />
+))
 ;

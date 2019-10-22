@@ -1,12 +1,13 @@
 :root {
   /* colors */
+  --color-red300: #FF8F88;
   --color-red400: #FF6960;
   --color-red500: #FF4438;
   --color-red600: #CC362D;
   --color-red700: #992922;
   --color-gray100: #F8F9F9;
   --color-gray200: #D4DCDE;
-  --color-priary-light: var(--color-red400);
+  --color-priary-light: var(--color-red300);
   --color-priary: var(--color-red500);
   --color-priary-dark: var(--color-red700);
   --color-secondary: #00303C;
@@ -17,8 +18,11 @@
   /* gutter */
   --gutter-base: 8px;
 
+  /* focusing */
+  --shadow-focus: rgba(121, 149, 240, 0.4) 0px 0px 0px 4px;
+
   /* animation */
-  --transition-base: all .2s ease-in-out;
+  --transition-base: all .15s ease-in-out;
 }
 
 * {

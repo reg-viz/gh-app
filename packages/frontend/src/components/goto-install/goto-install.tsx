@@ -1,15 +1,16 @@
-import * as React from "react";
+import React from "react";
 import { Icon } from "semantic-ui-react";
-import { root, description } from "./goto-install.css";
+import * as styles from "./goto-install.css";
+import { LINKS } from "../../consts";
 
-export function GotoInstall() {
+export const GotoInstall = () => {
   return (
-    <div className={root}>
+    <div className={styles.root}>
       <Icon name="download" size="massive" />
-      <p className={description}>
-        Please install <a className="text-link" href="https://github.com/apps/reg-suit">reg-suit GitHub app</a>. <br />
+      <p className={styles.description}>
+        Please install <a className="text-link" href={LINKS.configureInstallations}>reg-suit GitHub app</a>. <br />
         reg-suit app notifies results of regression tests to your repository.
       </p>
     </div>
   );
-}
+};

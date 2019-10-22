@@ -20,8 +20,8 @@ const Content = ({ isLoading, installations, searchText, repositories }: AppProp
     return (
       <div>
         <h2 className={styles.heading2}>REPOSITORIES INTEGRATED WITH REG-SUIT GITHUB APP</h2>
-        <SearchForm searchText={searchText} style={{ marginTop: 30 }} />
-        <RepositoryList className="repo-list" repositories={repositories} style={{ marginTop: 30 }} />
+        <SearchForm searchText={searchText} className={styles.form} />
+        <RepositoryList className="repo-list" repositories={repositories} />
         <div className={styles.guide}>
           <p>Can't find your repository?</p>
           <a href={LINKS.configureInstallations}>Configure</a>
@@ -30,7 +30,12 @@ const Content = ({ isLoading, installations, searchText, repositories }: AppProp
     );
   } else {
     return (
-      <GotoInstall />
+      <>
+        <GotoInstall />
+        <div className={styles.guide}>
+          <a href={LINKS.configureInstallations}>Configure</a>
+        </div>
+      </>
     );
   }
 };

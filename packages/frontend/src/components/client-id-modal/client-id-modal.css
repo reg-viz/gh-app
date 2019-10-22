@@ -12,6 +12,7 @@
   padding: var(--modal-gutter);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1), 0px 3px 3px rgba(0, 0, 0, 0.08);
   font-size: 16px;
+  overflow-y: auto;
 }
 
 :global(.ui.modal) > .modalHeader {
@@ -29,8 +30,8 @@
 .closeButton {
   cursor: pointer;
   position: absolute;
-  top: -24px;
-  right: -28px;
+  top: -18px;
+  right: -20px;
   background-color: transparent;
   border: none;
 }

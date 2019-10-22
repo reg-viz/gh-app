@@ -1,6 +1,7 @@
 import React, { createRef} from "react";
 import { Modal, Icon } from "semantic-ui-react";
 import * as styles from "./client-id-modal.css";
+import { CloseIcon } from "./close-icon";
 
 type Props = {
   repositoryName: string;
@@ -67,7 +68,7 @@ export class ClientIdModal extends React.Component<Props, State> {
             Client ID for "{repositoryName}"
           </h3>
           <button className={styles.closeButton} onClick={this.handleClose}>
-            <Icon name="remove" size="large" />
+            <CloseIcon />
           </button>
           <div className={styles.clientId}>
             <input

@@ -17,18 +17,27 @@
 .header {
   width: var(--app-width);
   height: var(--app-header-height);
-  margin: 0 auto;
+  margin: 16px auto 0;
 }
 
 .wrapper {
   width: var(--app-width);
   margin: 64px auto;
-  min-height: calc(100vh - var(--app-footer-height) - var(--app-header-height) - 128px);
+  min-height: calc(100vh - var(--app-footer-height) - var(--app-header-height) - 144px);
 }
 
 .heading2 {
   font-weight: 600;
-  font-size: 36px;
+  font-size: 24px;
+}
+@media screen and (min-width: 480px) {
+  .heading2 {
+    font-size: 36px;
+  }
+}
+
+.form {
+  margin: 64px 0 40px;
 }
 
 .guide {
@@ -46,8 +55,14 @@
   border-radius: 30px;
   transition: var(--transition-base);
 }
+
 .guide > a:hover {
   background-color: var(--color-priary-light);
+}
+
+.guide > a:focus {
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
 
 .footer {

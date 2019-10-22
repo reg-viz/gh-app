@@ -16,14 +16,21 @@
 }
 
 .header > a {
+  font-size: 12px;
   margin-left: 16px;
 }
 @media screen and (min-width: 480px) {
   .header > a {
+    font-size: 16px;
     margin-left: 24px;
   }
 }
 
 .header > a > i {
   width: 24px;
+}
+
+.brandLogo:focus, .header > a:focus {
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
