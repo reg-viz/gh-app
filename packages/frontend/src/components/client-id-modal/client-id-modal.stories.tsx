@@ -10,12 +10,14 @@ storiesOf("client-id-modal", module).add("default", () => (
     open
   />
 ), {
-  viewports: {
-    desktop: {
-      width: 1024,
-      height: 768,
+  screenshot: {
+    viewports: {
+      desktop: {
+        width: 1024,
+        height: 768,
+      },
+      tablet: "iPad Mini",
+      mobile: "iPhone X",
     },
-    tablet: "iPad Mini",
-    mobile: "iPhone X",
   },
 });
