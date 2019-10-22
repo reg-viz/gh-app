@@ -22,7 +22,7 @@ export const RepositoryItem: React.FC<Props> = ({ className, repository: { name,
     <ClientIdModal
       repositoryName={name}
       clientId={clientId}
-      trigger={<button className={styles.triggerButton}>Get Client ID</button>}
+      trigger={({ open }) => <button onClick={open} className={styles.triggerButton}>Get Client ID</button>}
     />
   </li>
 );

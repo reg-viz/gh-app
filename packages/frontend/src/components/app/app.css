@@ -44,6 +44,10 @@
   min-width: 200px;
   height: 56px;
   border-radius: 30px;
+  transition: var(--transition-base);
+}
+.guide > a:hover {
+  background-color: var(--color-priary-light);
 }
 
 .footer {
