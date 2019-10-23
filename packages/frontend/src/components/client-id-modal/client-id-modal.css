@@ -34,12 +34,16 @@
   right: -20px;
   background-color: transparent;
   border: none;
+  transition: var(--transition-base);
 }
 @media screen and (min-width: 480px) {
   .closeButton {
     top: 0;
     right: -4px;
   }
+}
+.closeButton:hover {
+  opacity: .8;
 }
 
 :global(.ui.modal) > .modalContent {
@@ -63,7 +67,7 @@
   padding: 0 24px;
   max-width: 100%;
   flex: auto;
-  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: 'Roboto Mono', monospace;
   background-color: var(--color-secondary);
   color: var(--color-text-sub);
   border-top-left-radius: 3px;
@@ -79,7 +83,7 @@
   font-size: 14px;
   flex-basis: 160px;
   color: #fff;
-  background-color: var(--color-priary);
+  background-color: var(--color-primary);
   border: none;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
@@ -99,7 +103,7 @@
 }
 
 .clientId > button:hover {
-  background-color: var(--color-priary-light);
+  background-color: var(--color-primary-light);
 }
 
 .consoleBox {
@@ -109,7 +113,7 @@
   border-radius: 3px;
   background-color: var(--color-secondary);
   padding: 24px;
-  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 14px;
   color: var(--color-text-sub);
   line-height: 1.7;

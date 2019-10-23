@@ -19,9 +19,9 @@ export const Header: React.FC<Props> = () => {
       <nav>
         <a className={styles.brandLogo} href={LINKS.organization} />
       </nav>
-      <a href={LINKS.configureInstallations}>Configure</a>
-      <a href="#" onClick={handleOnLogout}>Logout</a>
-      <a href={LINKS.ghAppRepository}>
+      <a className={styles.textLink} href={LINKS.configureInstallations}>Configure</a>
+      <a className={styles.textLink} href="#" onClick={handleOnLogout}>Logout</a>
+      <a className={styles.iconLink} href={LINKS.ghAppRepository}>
         <Icon name="github" size="big" />
       </a>
     </div>

@@ -49,7 +49,7 @@
   display: inline-block;
   color: #fff;
   line-height: 56px;
-  background-color: var(--color-priary);
+  background-color: var(--color-primary);
   min-width: 200px;
   height: 56px;
   border-radius: 30px;
@@ -57,7 +57,7 @@
 }
 
 .guide > a:hover {
-  background-color: var(--color-priary-light);
+  background-color: var(--color-primary-light);
 }
 
 .guide > a:focus {
