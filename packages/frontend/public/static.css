@@ -1,15 +1,11 @@
 :root {
   /* colors */
   --color-red300: #FF8F88;
-  --color-red400: #FF6960;
   --color-red500: #FF4438;
-  --color-red600: #CC362D;
-  --color-red700: #992922;
   --color-gray100: #F8F9F9;
   --color-gray200: #D4DCDE;
   --color-priary-light: var(--color-red300);
   --color-priary: var(--color-red500);
-  --color-priary-dark: var(--color-red700);
   --color-secondary: #00303C;
   --color-text-base: var(--color-secondary);
   --color-text-sub: #8DA3A9;
@@ -19,7 +15,7 @@
   --gutter-base: 8px;
 
   /* focusing */
-  --shadow-focus: rgba(121, 149, 240, 0.4) 0px 0px 0px 4px;
+  --shadow-focus: rgba(255,68,56,0.4) 0px 0px 0px 4px;
 
   /* animation */
   --transition-base: all .15s ease-in-out;
@@ -28,6 +24,10 @@
 * {
   margin: 0;
   padding: 0;
+}
+
+button:focus {
+  outline: none;
 }
 
 a, a:link, a:visited, a:hover, a:active {
@@ -56,8 +56,4 @@ body {
   font-size: 16px;
   color: var(--color-text-base);
   line-height: 1.75;
-}
-
-button:focus {
-  outline: none;
 }
