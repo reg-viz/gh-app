@@ -39,6 +39,8 @@ a.text-link {
   color: #2582C7;
   text-decoration: underline;
   transition-duration: color;
+a:hover {
+  text-decoration: none;
 }
 
 a.text-link:hover, a.text-link:active {
