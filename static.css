@@ -1,6 +1,33 @@
+:root {
+  /* colors */
+  --color-red300: #FF8F88;
+  --color-red500: #FF4438;
+  --color-gray100: #F8F9F9;
+  --color-gray200: #D4DCDE;
+  --color-primary-light: var(--color-red300);
+  --color-primary: var(--color-red500);
+  --color-secondary: #00303C;
+  --color-text-base: var(--color-secondary);
+  --color-text-sub: #8DA3A9;
+  --color-border: var(--color-gray200);
+
+  /* gutter */
+  --gutter-base: 8px;
+
+  /* focusing */
+  --shadow-focus: rgba(255,68,56,0.4) 0px 0px 0px 4px;
+
+  /* animation */
+  --transition-base: all .15s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
 * {
   margin: 0;
   padding: 0;
+}
+
+button:focus {
+  outline: none;
 }
 
 a, a:link, a:visited, a:hover, a:active {
@@ -9,8 +36,12 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
 a.text-link {
-  color: #4C89C3;
+  color: #2582C7;
+  text-decoration: underline;
   transition-duration: color;
+}
+a:hover {
+  text-decoration: none;
 }
 
 a.text-link:hover, a.text-link:active {
@@ -18,59 +49,14 @@ a.text-link:hover, a.text-link:active {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 300;
+  font-weight: normal;
+  font-family: 'Work Sans', sans-serif;
 }
 
 body {
-  background-color: #fff;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  letter-spacing: .08em;
-  color: #4A4A4A;
-}
-
-button:focus {
-  outline: none;
-}
-
-.app-header {
-  width: 100%;
-  background-color: #DFDFDF;
-}
-
-.app-header__inner {
-  width: 960px;
-  height: 60px;
-  padding: 0 32px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-}
-
-.app-wrapper {
-  width: 960px;
-  min-height: calc(100vh - 290px);
-  padding: 60px 32px 30px;
-  margin: 0 auto;
-  background-color: #FFF;
-}
-
-.footer {
-  background-color: #F6F6F6;
-  margin-top: 30px;
-  min-width: 1024px;
-}
-
-.footer__inner {
-  width: 960px;
-  padding: 0 32px;
-  margin: 0 auto;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.footer__inner__body {
-  color: #9B9B9B;
+  background-color: var(--color-gray100);
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  color: var(--color-text-base);
+  line-height: 1.75;
 }
