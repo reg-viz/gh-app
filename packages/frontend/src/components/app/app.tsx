@@ -1,71 +1,70 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { Message, Segment, Dimmer, Loader } from "semantic-ui-react";
-import { SearchForm } from "../search-form";
+
 import { store } from "../../store";
 import { AppState } from "../../types";
-import * as styles from "./app.css";
+
+import { Header } from "../header";
 import { RepositoryList } from "../repository-list";
 import { GotoInstall } from "../goto-install";
-import { Logout } from "../logout";
+import { SearchForm } from "../search-form";
 
-export type AppProps = AppState;
+import * as styles from "./app.css";
+import { LINKS } from "../../consts";
 
-function renderContents({ isLoading, installations, searchText, repositories }: AppProps) {
+type AppProps = AppState;
+
+const Content = ({ isLoading, installations, searchText, repositories }: AppProps) => {
   if (isLoading) return null;
   if (installations.length) {
     return (
       <div>
-        <h2 className={styles.heading2}>Repositories integrated with reg-suit GitHub app</h2>
-        <SearchForm searchText={searchText} style={{ marginTop: 30 }} />
-        <RepositoryList className="repo-list" repositories={repositories} style={{ marginTop: 30 }} />
+        <h2 className={styles.heading2}>REPOSITORIES INTEGRATED WITH REG-SUIT GITHUB APP</h2>
+        <SearchForm searchText={searchText} className={styles.form} />
+        <RepositoryList className="repo-list" repositories={repositories} />
+        <div className={styles.guide}>
+          <p>Can't find your repository?</p>
+          <a href={LINKS.configureInstallations}>Configure</a>
+        </div>
       </div>
     );
   } else {
     return (
-      <GotoInstall />
-    );
-  }
-}
-
-export function AppComponent(props: AppProps) {
-  const { isLoading } = props;
-    return (
       <>
-        <header className={styles.header}>
-          <div className={styles.headerInner}>
-            <img src="assets/logo.png" alt="reg-suit" />
-          </div>
-        </header>
-        <div className={styles.wrapper}>
-          <Dimmer active={isLoading}>
-            <Loader />
-          </Dimmer>
-          {renderContents(props)}
-          <Logout />
+        <GotoInstall />
+        <div className={styles.guide}>
+          <a href={LINKS.configureInstallations}>Configure</a>
         </div>
-        <footer className={styles.footer}>
-          <div className={styles.footerInner}>
-            <p className={styles.footerBody}>&copy; 2017 reg-viz</p>
-          </div>
-        </footer>
       </>
     );
-}
-
-export class AppContainer extends React.Component<{}, AppState> {
-
-  componentDidMount() {
-    if (!store.state$) return;
-    store.state$.subscribe(state => {
-      this.setState(state);
-    });
   }
+};
 
-  render() {
-    if (this.state) {
-      return <AppComponent {...this.state } />;
-    } else {
-      return null;
-    }
-  }
-}
+export const AppComponent: React.FC<AppProps> = props => {
+  const { isLoading } = props;
+  return (
+    <>
+      <header className={styles.header}>
+        <Header />
+      </header>
+      <div className={styles.wrapper}>
+        <Dimmer active={isLoading}>
+          <Loader />
+        </Dimmer>
+        <Content {...props} />
+      </div>
+      <footer className={styles.footer}>
+        <div className={styles.footerInner}>
+          <p className={styles.footerBody}>&copy; 2019 reg-viz</p>
+        </div>
+      </footer>
+    </>
+  );
+};
+
+export const AppContainer: React.FC<{}> = () => {
+  const [state, update] = useState<AppState | null>(null);
+  useEffect(() => store.state$.subscribe(update).unsubscribe, []);
+  if (!state) return null;
+  return <AppComponent {...state} />;
+};

@@ -2,7 +2,7 @@ import { Observable } from "rxjs";
 import { BehaviorSubject } from "rxjs";
 import { Action, InitAction, ChangeSearchTextAction } from "./actions";
 
-export class ActionCreator {
+export class Dispatcher {
 
   /**
    * @private
@@ -31,4 +31,4 @@ export class ActionCreator {
   }
 }
 
-export const actionCreator = new ActionCreator();
+export const dispatcher = new Dispatcher();

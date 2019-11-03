@@ -1,17 +1,125 @@
+:root {
+  --modal-gutter: 24px;
+}
+@media screen and (min-width: 480px) {
+  :root {
+    --modal-gutter: 40px;
+  }
+}
 
-.input {
-  margin-bottom: 15px;
+:global(.ui.modal).clientIdModal {
+  top: 10%;
+  padding: var(--modal-gutter);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1), 0px 3px 3px rgba(0, 0, 0, 0.08);
+  font-size: 16px;
+  overflow-y: auto;
+}
+
+:global(.ui.modal) > .modalHeader {
+  position: relative;
+  color: var(--color-text-base);
+  padding: 0 !important;
+  border-color: var(--color-border);
+}
+
+.modalHeader > h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.closeButton {
+  cursor: pointer;
+  position: absolute;
+  top: -18px;
+  right: -20px;
+  background-color: transparent;
+  border: none;
+  transition: var(--transition-base);
+}
+@media screen and (min-width: 480px) {
+  .closeButton {
+    top: 0;
+    right: -4px;
+  }
+}
+.closeButton:hover {
+  opacity: .8;
+}
+
+:global(.ui.modal) > .modalContent {
+  margin-top: var(--modal-gutter);
+  padding: 0 !important;
+}
+
+.clientId {
+  margin: var(--modal-gutter) 0;
+  width: 100%;
+  display: flex;
+  height: 57px;
+}
+
+.clientId > * {
+  display: block;
+}
+
+.clientId > input {
+  border: none;
+  padding: 0 24px;
+  max-width: 100%;
+  flex: auto;
+  font-family: 'Roboto Mono', monospace;
+  background-color: var(--color-secondary);
+  color: var(--color-text-sub);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.clientId > input:focus {
+  outline: none;
+}
+
+.clientId > button {
+  cursor: pointer;
+  font-size: 14px;
+  flex-basis: 160px;
+  color: #fff;
+  background-color: var(--color-primary);
+  border: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  transition: var(--transition-base);
+}
+@media screen and (max-width: 480px) {
+  .clientId {
+    height: 40px;
+  }
+  .clientId > input {
+    font-size: 14px;
+    border-radius: 3px;
+  }
+  .clientId > button {
+    display: none;
+  }
+}
+
+.clientId > button:hover {
+  background-color: var(--color-primary-light);
 }
 
 .consoleBox {
-  margin: 15px 0;
+  margin: 24px 0;
   word-break: break-all;
-  white-space: pre-wrap;
+  white-space: pre;
   border-radius: 3px;
-  background-color: #191919;
-  padding: 15px 30px;
-  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  background-color: var(--color-secondary);
+  padding: 24px;
+  font-family: 'Roboto Mono', monospace;
   font-size: 14px;
-  line-height: 1.4em;
-  color: #4990E2;
+  color: var(--color-text-sub);
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+:global(.ui.modals.dimmer) {
+  background-color: rgba(255, 255, 255, 0.92) !important;
 }

@@ -1,28 +1,27 @@
 import * as React from "react";
-import { Button } from "semantic-ui-react";
+import cx from "classnames";
 import { RepositoryWithInstallation } from "../../types";
 import { ClientIdModal } from "../client-id-modal";
-import { RoundButton } from "../round-button/round-button";
-import { avatar, root, main, loginName } from "./repository-item.css";
+import * as styles from "./repository-item.css";
 
-export interface RepositoryItemProps {
+type Props = {
+  className?: string;
   repository: RepositoryWithInstallation;
-}
+};
 
-export class RepositoryItem extends React.Component<RepositoryItemProps> {
-  render() {
-    const { name, owner, id, installation, clientId } = this.props.repository;
-    return (
-      <div className={root}>
-        <img className={avatar} src={owner.avatarUrl} alt={owner.login} />
-        <div className={loginName}>{owner.login}</div>
-        <div className={main}>{name}</div>
-        <ClientIdModal
-          repositoryName={name}
-          clientId={clientId}
-          trigger={<RoundButton>Get client ID</RoundButton>}
-        />
+export const RepositoryItem: React.FC<Props> = ({ className, repository: { name, owner, id, installation, clientId } })=> (
+  <li className={cx(className, styles.repositoryItem)}>
+    <div className={styles.repoInfo}>
+      <img className={styles.avatar} src={owner.avatarUrl} alt={owner.login} />
+      <div className={styles.repoInfoNames}>
+        <div className={styles.repoName}>{name}</div>
+        <div className={styles.ownerName}>{owner.login}</div>
       </div>
-    );
-  }
-}
+    </div>
+    <ClientIdModal
+      repositoryName={name}
+      clientId={clientId}
+      trigger={({ open }) => <button onClick={open} className={styles.triggerButton}>Get Client ID</button>}
+    />
+  </li>
+);

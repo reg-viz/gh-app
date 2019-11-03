@@ -1,27 +1,49 @@
-import * as React from "react";
-import { Modal, Input } from "semantic-ui-react";
-import { consoleBox, input } from "./client-id-modal.css";
+import React, { createRef} from "react";
+import { Modal, Icon } from "semantic-ui-react";
+import * as styles from "./client-id-modal.css";
+import { CloseIcon } from "./close-icon";
 
-export interface ClientIdModalProps {
+type Props = {
   repositoryName: string;
   clientId: string;
-  trigger?: any;
+  trigger?: (props: { open: () => any }) => React.ComponentElement<any, any>;
   open?: boolean;
+};
+
+type State = {
+  isOpen: boolean;
 }
 
-export class ClientIdModal extends React.Component<ClientIdModalProps> {
+export class ClientIdModal extends React.Component<Props, State> {
 
-  inputRef: React.RefObject<Input>;
+  inputRef: React.RefObject<HTMLInputElement>;
 
-  constructor(props: ClientIdModalProps) {
+  constructor(props: Props) {
     super(props);
     this.inputRef = React.createRef();
-    this.handleOnClick = this.handleOnClick.bind(this);
+    this.state = { isOpen: false };
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleCopy = this.handleCopy.bind(this);
+    this.trigger = this.trigger.bind(this);
   }
 
-  handleOnClick() {
+  trigger() {
+    if (!this.props.trigger) return null;
+    return this.props.trigger({ open: this.handleOpen });
+  }
+
+  handleOpen() {
+    this.setState({ isOpen: true });
+  }
+
+  handleClose() {
+    this.setState({ isOpen: false} );
+  }
+
+  handleCopy() {
     if (!this.inputRef.current) return;
-    const rawInput = (this.inputRef.current as any).inputRef as React.RefObject<HTMLInputElement>;
+    const rawInput = this.inputRef;
     if (!rawInput.current) return;
     rawInput.current.focus();
     rawInput.current.selectionStart = 0;
@@ -40,18 +62,25 @@ export class ClientIdModal extends React.Component<ClientIdModalProps> {
       }
     }, null, 2);
     return (
-      <Modal className="client-id-modal" trigger={trigger} open={open}>
-        <Modal.Header>Client ID for "{repositoryName}"</Modal.Header>
-        <Modal.Content>
-          <Input
-            className={input}
-            ref={this.inputRef}
-            fluid={true}
-            value={clientId}
-            action={{ color: "teal", labelPosition: "right", icon: "copy", content: "Copy to clipboard", onClick: this.handleOnClick }}
-          />
+      <Modal className={styles.clientIdModal} trigger={this.trigger()} onClose={this.handleClose} open={this.state.isOpen || !!open}>
+        <Modal.Header className={styles.modalHeader}>
+          <h3>
+            Client ID for "{repositoryName}"
+          </h3>
+          <button className={styles.closeButton} onClick={this.handleClose}>
+            <CloseIcon />
+          </button>
+          <div className={styles.clientId}>
+            <input
+              ref={this.inputRef}
+              defaultValue={clientId}
+            />
+            <button onClick={this.handleCopy}>Copy to clipboard</button>
+          </div>
+        </Modal.Header>
+        <Modal.Content className={styles.modalContent}>
           Then open regconfig.json in your editor and append the following:
-          <pre className={consoleBox}>{conf}</pre>
+          <pre className={styles.consoleBox}>{conf}</pre>
           Learn more? Read <a
             className="text-link"
             target="_blank"

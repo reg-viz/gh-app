@@ -1,43 +1,30 @@
-import * as React from "react";
-import { Input } from "semantic-ui-react";
-import { actionCreator } from "../../action-creator";
-import { help } from "./search-form.css";
+import React, { useCallback } from "react";
+import cx from "classnames";
+import { dispatcher } from "../../action-creator";
 
-export interface SearchFormProps {
+import * as styles from "./search-form.css";
+import { SearchIcon } from "./search-icon";
+
+type Props = {
+  className?: string;
   searchText: string;
-  style?: {[key: string]: any};
-}
+};
 
-export class SearchForm extends React.Component<SearchFormProps>{
-  constructor(props: SearchFormProps) {
-    super(props);
-    this.handleOnChange = this.handleOnChange.bind(this);
-  }
+export const SearchForm: React.FC<Props> = ({ searchText, className }) => {
+  const handleOnChange= useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatcher.changeSearchText(e.target.value);
+  }, []);
 
-  handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
-    actionCreator.changeSearchText(e.target.value);
-  }
-
-  render() {
-    return (
-      <div style={this.props.style}>
-        <Input
-          icon="search"
-          iconPosition="left"
-          placeholder="Search on repository or owner"
-          onChange={this.handleOnChange}
-          fluid={true}
-          value={this.props.searchText}
-        />
-        <p className={help}>
-          Can't find your repository?&nbsp;
-          <a
-            className="text-link"
-            target="_blank"
-            href="https://github.com/apps/reg-suit/installations/new"
-          >Configure your Installation.</a>
-        </p>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={cx(className, styles.searchForm)}>
+      <SearchIcon className={styles.icon} />
+      <input
+        className={styles.input}
+        type="search"
+        placeholder="Search on repository or owner"
+        onChange={handleOnChange}
+        value={searchText}
+      />
+    </div>
+  );
+};
