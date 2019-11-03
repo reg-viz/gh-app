@@ -12,7 +12,6 @@
   display: block;
   width: 120px;
   height: 24.55px;
-  background-image: url('/assets/branding_logo.svg');
   transition: var(--transition-base);
 }
 
