@@ -17,7 +17,9 @@ export const Header: React.FC<Props> = () => {
   return (
     <div className={styles.header}>
       <nav>
-        <a className={styles.brandLogo} href={LINKS.organization} />
+        <a className={styles.brandLogo} href={LINKS.organization}>
+          <img src="assets/branding_logo.svg" alt="reg-viz" />
+        </a>
       </nav>
       <a className={styles.textLink} href={LINKS.configureInstallations}>Configure</a>
       <a className={styles.textLink} href="#" onClick={handleOnLogout}>Logout</a>
