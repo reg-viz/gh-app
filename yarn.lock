@@ -14053,10 +14053,10 @@ store2@^2.7.1:
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.10.0.tgz#46b82bb91878daf1b0d56dec2f1d41e54d5103cf"
   integrity sha512-tWEpK0snS2RPUq1i3R6OahfJNjWCQYNxq0+by1amCSuw0mXtymJpzmZIeYpA1UAa+7B0grCpNYIbDcd7AgTbFg==
 
-storycap@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/storycap/-/storycap-2.0.0.tgz#f4dcc9422f7fe35428cc14863ba29d05f9c01aa3"
-  integrity sha512-n8NZJm5VJAyFb03Z2z40GdfeEIGj9KvE8XX+EYnqNOJh/DKXA68ht9Ua5HsT9C/ZiY6mL6ChpPHWLfHzbo953g==
+storycap@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/storycap/-/storycap-2.2.0.tgz#d1d85f098d8522f54948e9601e6d9a5b1e5baa31"
+  integrity sha512-rRDeKNHexB3L7n1jMYzO69BHhm5hchKGD5fc1jLMlrQ9Xj9PBimX6JoPibxb+nJgHc9itPwaunS8lZPOfk2GIA==
   dependencies:
     "@types/minimatch" "^3.0.3"
     "@types/mkdirp" "^0.5.2"
