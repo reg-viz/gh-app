@@ -39,12 +39,10 @@ export function auth(installationId: string) {
       "Accept": "application/vnd.github.machine-man-preview+json",
     },
     body: {},
-    url: `https://api.github.com/installations/${installationId}/access_tokens`,
+    url: `https://api.github.com/app/installations/${installationId}/access_tokens`,
     json: true,
   };
-  return rp(options).then(body => {
-    return body["token"] as string;
-  }).catch(convertError);
+  return rp(options).then(body => body["token"] as string).catch(convertError);
 }
 
 export function authWithCode({ code }: { code: string }) {
