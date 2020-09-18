@@ -18,6 +18,7 @@ export interface CommentToPrBody extends BaseEventBody, ResultMetadata {
   deletedItemsCount: number;
   passedItemsCount: number;
   reportUrl?: string;
+  headOid?: string;
 }
 
 export interface UpdateStatusBody extends BaseEventBody {

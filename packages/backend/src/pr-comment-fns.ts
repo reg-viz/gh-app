@@ -82,11 +82,21 @@ export function convert(context: UpdatePrCommentContextQuery, eventBody: Comment
   if (!repo) {
     throw new NotInstallationError(eventBody.repository);
   }
-  if (!repo.ref) {
-    throw new DataValidationError(404, `Can't find ${eventBody.branchName} branch.`);
+  if (!repo.pullRequests) {
+    return [];
   }
-  const prs = repo.ref.associatedPullRequests.nodes;
-  if (!prs || !prs.length) return { message: `${eventBody.branchName} does not have open PRs.` };
+  if (!repo.pullRequests || !repo.pullRequests.nodes || !repo.pullRequests.nodes.length) return { message: `${eventBody.branchName} does not have open PRs.` };
+  const prs = repo.pullRequests.nodes.filter(pr => {
+    if (!eventBody.headOid) {
+      // for v1
+      if (!pr.headRepository) return false;
+      return repo.nameWithOwner === pr.headRepository.nameWithOwner;
+    } else {
+      // for v2
+      if (!pr.headRef || !pr.headRef.target) return false;
+      return eventBody.headOid === pr.headRef.target.oid;
+    }
+  });
   return prs.map(pr => {
     const paramsForCreate = {
       method: "POST",

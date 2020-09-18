@@ -12872,11 +12872,6 @@ refractor@^2.4.1:
     parse-entities "^1.1.2"
     prismjs "~1.17.0"
 
-reg-gh-app-interface@^0.5.9:
-  version "0.5.9"
-  resolved "https://registry.yarnpkg.com/reg-gh-app-interface/-/reg-gh-app-interface-0.5.9.tgz#c6954e7694a6055b3c52726518996606a3242dec"
-  integrity sha512-S7DU5RvT0P5gLRMyNhfCb3sk3w2BrxX/7KblMz3air9v/ZuUuWNb71mtkXQIyBGDqGgbMleluebAaxJgpC/RSw==
-
 regenerate-unicode-properties@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/regenerate-unicode-properties/-/regenerate-unicode-properties-8.1.0.tgz#ef51e0f0ea4ad424b77bf7cb41f3e015c70a3f0e"

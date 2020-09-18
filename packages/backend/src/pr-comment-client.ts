@@ -29,6 +29,7 @@ export async function commentToPR(eventBody: CommentToPrEventBody) {
   const { data } = await client.requestWithGraphQL(updatePrCommentContextQuery, variables) as { data: UpdatePrCommentContextQuery };
   const converted = convert(data, eventBody);
   if (!Array.isArray(converted)) return converted;
+  if (converted.length === 0) return { message: "no PR to comment" };
   await Promise.all(converted.map(({ path, method, body }) => client.requestWithRestAPI(path, method, body)));
   return { message: "commented" };
 }

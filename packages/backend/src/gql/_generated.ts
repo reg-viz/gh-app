@@ -55,36 +55,58 @@ export type UpdatePrCommentContextQueryVariables = {
 export type UpdatePrCommentContextQuery = {
   // Lookup a given repository by the owner and repository name.
   repository:  {
+    id: string,
     // The repository's name with owner.
     nameWithOwner: string,
-    // Fetch a given ref from the repository
-    ref:  {
-      // A list of pull requests with this ref as the head ref.
-      associatedPullRequests:  {
-        // Identifies the total count of items in the connection.
-        totalCount: number,
-        // A list of nodes.
-        nodes:  Array< {
+    // A list of pull requests that have been opened in the repository.
+    pullRequests:  {
+      // Identifies the total count of items in the connection.
+      totalCount: number,
+      // A list of nodes.
+      nodes:  Array< {
+        id: string,
+        // Identifies the pull request number.
+        number: number,
+        // The repository associated with this pull request's head Ref.
+        headRepository:  {
           id: string,
-          // Identifies the pull request number.
-          number: number,
-          // A list of comments associated with the pull request.
-          comments:  {
-            // Identifies the total count of items in the connection.
-            totalCount: number,
-            // A list of nodes.
-            nodes:  Array< {
-              // Identifies the primary key from the database.
-              databaseId: number | null,
-              // Identifies the date and time when the object was created.
-              createdAt: string,
-              // Did the viewer author this comment.
-              viewerDidAuthor: boolean,
-            } > | null,
-          },
-        } > | null,
-      },
-    } | null,
+          // The repository's name with owner.
+          nameWithOwner: string,
+        } | null,
+        // Identifies the head Ref associated with the pull request.
+        headRef:  {
+          // The object the ref points to.
+          target: ( {
+              // The Git object ID
+              oid: string,
+            } | {
+              // The Git object ID
+              oid: string,
+            } | {
+              // The Git object ID
+              oid: string,
+            } | {
+              // The Git object ID
+              oid: string,
+            }
+          ),
+        } | null,
+        // A list of comments associated with the pull request.
+        comments:  {
+          // Identifies the total count of items in the connection.
+          totalCount: number,
+          // A list of nodes.
+          nodes:  Array< {
+            // Identifies the primary key from the database.
+            databaseId: number | null,
+            // Identifies the date and time when the object was created.
+            createdAt: string,
+            // Did the viewer author this comment.
+            viewerDidAuthor: boolean,
+          } > | null,
+        },
+      } > | null,
+    },
   } | null,
 };
 
