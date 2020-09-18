@@ -16,7 +16,7 @@
     "reg-publish-s3-plugin": {
       "bucketName": "reg-publish-bucket-3d1d97b2-f810-4e81-b4bb-320e04c76a44",
       "sdkOptions": {
-        "region": "	us-east-1"
+        "region": "us-east-1"
       }
     }
   }
