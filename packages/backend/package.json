@@ -52,7 +52,8 @@
   "jest": {
     "globals": {
       "ts-jest": {
-        "tsConfig": "tsconfig.build.json"
+        "tsConfig": "tsconfig.build.json",
+        "diagnostics": false
       }
     },
     "moduleFileExtensions": [

@@ -1,16 +1,24 @@
 query UpdatePrCommentContext($branchName: String!, $owner: String!, $repository: String!) {
   repository(owner: $owner, name: $repository) {
+    id
     nameWithOwner
-    ref(qualifiedName: $branchName) {
-      associatedPullRequests(last: 5, states: OPEN) {
-        totalCount,
-        nodes {
-          id, number
-          comments(first: 50) {
-            totalCount
-            nodes {
-              databaseId, createdAt, viewerDidAuthor
-            }
+    pullRequests(first: 5, states: OPEN, orderBy: { field: UPDATED_AT, direction: DESC }, headRefName: $branchName) {
+      totalCount,
+      nodes {
+        id, number
+        headRepository {
+          id
+          nameWithOwner
+        }
+        headRef {
+          target {
+            oid
+          }
+        }
+        comments(first: 50) {
+          totalCount
+          nodes {
+            databaseId, createdAt, viewerDidAuthor
           }
         }
       }
