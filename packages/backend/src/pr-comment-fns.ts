@@ -6,14 +6,21 @@ import { decodeMetadata } from "./status-fns";
 
 export type CommentToPrEventBody  = CommentToPrBody;
 
-export interface UpdateIssueCommentBody {
+export interface WriteIssueCommentBody {
   body: string;
 }
-export interface UpdateIssueCommentApiParams {
+export interface WriteIssueCommentApiParams {
   method: "POST" | "PATCH";
   path: string;
-  body: UpdateIssueCommentBody;
+  body: WriteIssueCommentBody;
 }
+export interface DeleteIssueCommentApiParams {
+  method: "DELETE";
+  path: string;
+  body: undefined;
+}
+
+export type UpdateIssueCommentApiParams = WriteIssueCommentApiParams | DeleteIssueCommentApiParams;
 
 export function validateEventBody(input: Partial<CommentToPrEventBody>) {
   const result =
@@ -77,6 +84,13 @@ export function createCommentBody(eventBody: CommentSeed) {
   return lines.join("\n");
 }
 
+function findCommentsByRegApp(pr: NonNullable<NonNullable<UpdatePrCommentContextQuery["repository"]>["pullRequests"]["nodes"]>[0]) {
+  if (!pr.comments.nodes || !pr.comments.nodes.length) return [];
+  const hits = pr.comments.nodes.filter(c => c.viewerDidAuthor);
+  if (!hits.length) return [];
+  return hits.sort((c1, c2) => new Date(c2.createdAt).getTime() - new Date(c1.createdAt).getTime());
+}
+
 export function convert(context: UpdatePrCommentContextQuery, eventBody: CommentToPrEventBody): UpdateIssueCommentApiParams[] | { message: string }{
   const repo = context.repository;
   if (!repo) {
@@ -97,27 +111,54 @@ export function convert(context: UpdatePrCommentContextQuery, eventBody: Comment
       return eventBody.headOid === pr.headRef.target.oid;
     }
   });
-  return prs.map(pr => {
-    const paramsForCreate = {
-      method: "POST",
-      path: `/repos/${repo.nameWithOwner}/issues/${pr.number}/comments`,
-      body: { body: createCommentBody(eventBody) },
-    } as UpdateIssueCommentApiParams;
-    if (!pr.comments.nodes || !pr.comments.nodes.length) {
-      // create
-      return paramsForCreate;
+  return prs.reduce((paramList, pr) => {
+    const commentsByRegsuit = findCommentsByRegApp(pr);
+    if (!commentsByRegsuit.length) {
+      return [
+        ...paramList, 
+        {
+          method: "POST",
+          path: `/repos/${repo.nameWithOwner}/issues/${pr.number}/comments`,
+          body: {
+            body: createCommentBody(eventBody),
+          },
+        } as UpdateIssueCommentApiParams,
+      ];
     } else {
-      // find all comments reg-app created.
-      const hits = pr.comments.nodes.filter(c => c.viewerDidAuthor);
-      if (!hits.length) return paramsForCreate;
-      const targetComment = hits.sort((c1, c2) => new Date(c2.createdAt).getTime() - new Date(c1.createdAt).getTime())[0];
-      return {
-        method: "PATCH",
-        path: `/repos/${repo.nameWithOwner}/issues/comments/${targetComment.databaseId}`,
-        body: { body: createCommentBody(eventBody) },
-      } as UpdateIssueCommentApiParams;
+      switch(eventBody.behavior) {
+        case "once":
+          return paramList;
+        case "new":
+          return [
+            ...paramList,
+            ...commentsByRegsuit.map(c => ({
+              method: "DELETE",
+              path: `/repos/${repo.nameWithOwner}/issues/comments/${c.databaseId}`,
+              body: undefined,
+            } as UpdateIssueCommentApiParams)),
+            {
+              method: "POST",
+              path: `/repos/${repo.nameWithOwner}/issues/${pr.number}/comments`,
+              body: {
+                body: createCommentBody(eventBody),
+              },
+            } as UpdateIssueCommentApiParams,
+          ];
+        case "default":
+        default:
+          return [
+            ...paramList,
+            {
+              method: "PATCH",
+              path: `/repos/${repo.nameWithOwner}/issues/comments/${commentsByRegsuit[0].databaseId}`,
+              body: {
+                body: createCommentBody(eventBody),
+              },
+            } as UpdateIssueCommentApiParams,
+          ];
+      }
     }
-  });
+  }, [] as UpdateIssueCommentApiParams[]);
 }
 
 export function createCommentParams(data: StatusDetailQuery, payload: PullRequestOpenPayload): UpdateIssueCommentApiParams | undefined {
