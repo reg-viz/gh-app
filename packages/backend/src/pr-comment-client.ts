@@ -30,7 +30,7 @@ export async function commentToPR(eventBody: CommentToPrEventBody) {
   const converted = convert(data, eventBody);
   if (!Array.isArray(converted)) return converted;
   if (converted.length === 0) return { message: "no PR to comment" };
-  await Promise.all(converted.map(({ path, method, body }) => client.requestWithRestAPI(path, method, body)));
+  await converted.reduce((pre, { path, method, body }) => pre.then(() => client.requestWithRestAPI(path, method, body)), Promise.resolve());
   return { message: "commented" };
 }
 

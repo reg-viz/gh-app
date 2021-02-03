@@ -51,7 +51,7 @@ export function gqlRequest(query: string, token: string, variables?: any) {
   return rp(request).then(captureResponse(request));
 }
 
-export function requestWithV3api(token: string, method: "POST" | "PATCH", path: string, body?: any) {
+export function requestWithV3api(token: string, method: "POST" | "PATCH" | "DELETE", path: string, body?: any) {
   const request: rp.OptionsWithUrl = {
     url: "https://api.github.com" + path,
     method,
@@ -73,7 +73,7 @@ export class GhApiClient {
     return gqlRequest(query, this._token, variables);
   }
 
-  requestWithRestAPI(path: string, method: "POST" | "PATCH", body: any) {
+  requestWithRestAPI(path: string, method: "POST" | "PATCH" | "DELETE", body: any) {
     return requestWithV3api(this._token, method, path, body);
   }
 

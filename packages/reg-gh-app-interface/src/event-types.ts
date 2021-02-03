@@ -11,12 +11,15 @@ export interface ResultMetadata {
   passedItemsCount: number;
 }
 
+export type PrCommentBehavior = "default" | "once" | "new";
+
 export interface CommentToPrBody extends BaseEventBody, ResultMetadata {
   branchName: string;
   failedItemsCount: number;
   newItemsCount: number;
   deletedItemsCount: number;
   passedItemsCount: number;
+  behavior?: PrCommentBehavior;
   reportUrl?: string;
   headOid?: string;
 }

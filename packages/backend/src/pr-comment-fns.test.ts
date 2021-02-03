@@ -10,6 +10,7 @@ const eventBodyV1: CommentToPrEventBody = {
   newItemsCount: 0,
   passedItemsCount: 0,
   reportUrl: "https://hoge.com/index.html",
+  behavior: undefined,
 };
 
 const eventBodyV2: CommentToPrEventBody = {
@@ -76,6 +77,68 @@ describe(convert, () => {
         expect(actual.length).toBe(1);
         expect(actual[0].method).toBe("PATCH");
         expect(actual[0].path).toBe("/repos/reg-viz/gh-app/issues/comments/520499081");
+      });
+    });
+  });
+
+  describe("comment behavior", () => {
+    describe("no behavior option(default)", () => {
+      it("should convert to POST request if contexts PR is not commented", () => {
+        const log = require("../test/gql-log/update-pr-comment-context/data_for_post.json");
+        const actual = convert(log.data, { ...eventBodyV1, behavior: undefined });
+        if (!Array.isArray(actual)) return fail();
+        expect(actual.length).toBe(1);
+        expect(actual[0].method).toBe("POST");
+        expect(actual[0].path).toBe("/repos/reg-viz/gh-app/issues/20/comments");
+      });
+
+      it("should convert to PATCH request if contexts PR is commented", () => {
+        const log = require("../test/gql-log/update-pr-comment-context/data_for_patch.json");
+        const actual = convert(log.data, { ...eventBodyV1, behavior: undefined });
+        if (!Array.isArray(actual)) return fail();
+        expect(actual.length).toBe(1);
+        expect(actual[0].method).toBe("PATCH");
+        expect(actual[0].path).toBe("/repos/reg-viz/gh-app/issues/comments/692200265");
+      });
+    });
+
+    describe("behavior: once", () => {
+      it("should convert to POST request if contexts PR is not commented", () => {
+        const log = require("../test/gql-log/update-pr-comment-context/data_for_post.json");
+        const actual = convert(log.data, { ...eventBodyV1, behavior: "once" });
+        if (!Array.isArray(actual)) return fail();
+        expect(actual.length).toBe(1);
+        expect(actual[0].method).toBe("POST");
+        expect(actual[0].path).toBe("/repos/reg-viz/gh-app/issues/20/comments");
+      });
+
+      it("should convert to empty request if contexts PR is commented", () => {
+        const log = require("../test/gql-log/update-pr-comment-context/data_for_patch.json");
+        const actual = convert(log.data, { ...eventBodyV1, behavior: "once" });
+        if (!Array.isArray(actual)) return fail();
+        expect(actual.length).toBe(0);
+      });
+    });
+
+    describe("behavior: new", () => {
+      it("should convert to POST request if contexts PR is not commented", () => {
+        const log = require("../test/gql-log/update-pr-comment-context/data_for_post.json");
+        const actual = convert(log.data, { ...eventBodyV1, behavior: "new" });
+        if (!Array.isArray(actual)) return fail();
+        expect(actual.length).toBe(1);
+        expect(actual[0].method).toBe("POST");
+        expect(actual[0].path).toBe("/repos/reg-viz/gh-app/issues/20/comments");
+      });
+
+      it("should convert to DELETE and POST requests if contexts PR is commented", () => {
+        const log = require("../test/gql-log/update-pr-comment-context/data_for_patch.json");
+        const actual = convert(log.data, { ...eventBodyV1, behavior: "new" });
+        if (!Array.isArray(actual)) return fail();
+        expect(actual.length).toBe(2);
+        expect(actual[0].method).toBe("DELETE");
+        expect(actual[0].path).toBe("/repos/reg-viz/gh-app/issues/comments/692200265");
+        expect(actual[1].method).toBe("POST");
+        expect(actual[1].path).toBe("/repos/reg-viz/gh-app/issues/20/comments");
       });
     });
   });
