@@ -24,7 +24,7 @@ const Content = ({ isLoading, installations, searchText, repositories }: AppProp
         <RepositoryList className="repo-list" repositories={repositories} />
         <div className={styles.guide}>
           <p>Can't find your repository?</p>
-          <a href={LINKS.configureInstallations}>Configure</a>
+          <a href={LINKS.configureInstallations}>Configure GitHub app</a>
         </div>
       </div>
     );
