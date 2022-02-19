@@ -9,6 +9,7 @@ export interface ResultMetadata {
   newItemsCount: number;
   deletedItemsCount: number;
   passedItemsCount: number;
+  shortDescription?: boolean;
 }
 
 export type PrCommentBehavior = "default" | "once" | "new";
@@ -19,6 +20,7 @@ export interface CommentToPrBody extends BaseEventBody, ResultMetadata {
   newItemsCount: number;
   deletedItemsCount: number;
   passedItemsCount: number;
+  shortDescription?: boolean;
   behavior?: PrCommentBehavior;
   reportUrl?: string;
   headOid?: string;
