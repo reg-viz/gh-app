@@ -22,12 +22,14 @@ describe(encodeMetadata, () => {
       newItemsCount: 11,
       deletedItemsCount: 12,
       passedItemsCount: 13,
+      shortDescription: true
     });
     expect(decodeMetadata(encoded)).toEqual({
       failedItemsCount: 10,
       newItemsCount: 11,
       deletedItemsCount: 12,
-      passedItemsCount: 13
+      passedItemsCount: 13,
+      shortDescription: true
     });
   });
 });
