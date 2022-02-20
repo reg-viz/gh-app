@@ -11,8 +11,9 @@
     "tcm": "tcm src",
     "start": "webpack-dev-server --mode=development",
     "storybook": "start-storybook -s public,test -p 9001",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d public",
+    "predeploy.bk": "npm run build",
+    "deploy.bk": "gh-pages -d public",
+    "deploy": "skip gh pages deploy temp",
     "storycap": "storycap -o \"../../regression/__screenshots__\" --serverCmd \"npm run storybook -- --ci\" --serverTimeout 60000 http://localhost:9001"
   },
   "keywords": [
