@@ -19,7 +19,7 @@ service: reg-gh-app
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs12.x
   timeout: 12
 
 # you can add packaging information here
